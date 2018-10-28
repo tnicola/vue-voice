@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "npm run delete-dist && vue-cli-service build",
+    "build": "npm run delete-dist && vue-cli-service build --dest build",
     "lint": "vue-cli-service lint",
     "delete-dist": "rm -rf dist",
     "build:lib": "npm run delete-dist && npm run build:umd & npm run build:es & npm run build:unpkg & node tools/copy-package",
