@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "build": "npm run delete-dist && vue-cli-service build",
+    "build:lib": "npm run delete-dist && vue-cli-service build --target lib --name vue-voice ./src/main.ts && node lib/copy-package",
+    "lint": "vue-cli-service lint",
+    "delete-dist": "rm -rf dist"
   },
   "dependencies": {
     "vue": "^2.5.17"

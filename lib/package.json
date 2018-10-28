@@ -1,0 +1,19 @@
+{
+  "name": "vue-voice",
+  "version": "0.1.0-beta",
+  "author": "Nicola Tommasi",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tnicola/vue-voice"
+  },
+  "license": "MIT",
+  "keywords": [
+    "speech",
+    "text-to-speech",
+    "speech-to-text",
+    "voice"
+  ],
+  "peerDependencies": {
+    "vue": ">= 2.5.0"
+  }
+}
