@@ -1,63 +1,27 @@
 {
-  "name": "vue-voice-demo",
+  "name": "vue-voice",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "npm run delete-dist && vue-cli-service build --dest build",
+    "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "delete-dist": "rm -rf dist",
-    "build:lib": "npm run delete-dist & npm run compile-ts & npm run build:umd & npm run build:es & npm run build:unpkg & node tools/copy-package",
-    "build:umd": "rollup --config config/rollup.config.js --format umd --file dist/vue-voice.umd.js",
-    "build:es": "rollup --config config/rollup.config.js --format es --file dist/vue-voice.esm.js",
-    "build:unpkg": "rollup --config config/rollup.config.js --format iife --file dist/vue-voice.min.js",
-    "compile-ts": "node_modules/.bin/tsc --outDir dist --project tsconfig-lib.json",
-    "build:orig": "vue-cli-service build --target lib --name myLib src/lib/CustomButton.vue"
+    "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "@types/webpack-env": "^1.13.6",
-    "vue": "^2.5.17",
-    "vue-class-component": "^6.3.2",
-    "vue-tour": "^1.1.0",
-    "vue-voice": "file:///C:\\github\\vue-voice\\vue-voice-0.1.1-beta.tgz"
+    "vue": "^2.5.17"
   },
   "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.5",
     "@vue/cli-plugin-eslint": "^3.0.5",
-    "@vue/cli-plugin-typescript": "^3.0.5",
+    "@vue/cli-plugin-unit-jest": "^3.0.5",
     "@vue/cli-service": "^3.0.5",
-    "@vue/eslint-config-typescript": "^3.0.5",
-    "rollup": "^0.57.1",
-    "rollup-plugin-buble": "^0.19.2",
-    "rollup-plugin-uglify": "3.0.0",
-    "rollup-plugin-vue": "^3.0.0",
-    "sass-loader": "^7.1.0",
-    "typescript": "^3.0.0",
-    "vue-template-compiler": "^2.5.17",
-    "vuetype": "^0.3.2"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended",
-      "@vue/typescript"
-    ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "typescript-eslint-parser"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+    "@vue/eslint-config-airbnb": "^4.0.0",
+    "@vue/test-utils": "^1.0.0-beta.20",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "eslint": "^5.8.0",
+    "eslint-plugin-vue": "^5.0.0-0",
+    "vue-template-compiler": "^2.5.17"
+  }
 }
