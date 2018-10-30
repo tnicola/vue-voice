@@ -3,9 +3,9 @@ import buble from 'rollup-plugin-buble'; // Transpile/polyfill with reasonable b
 import uglify from 'rollup-plugin-uglify';
 
 export default {
-    input: 'src/main.ts', // Path relative to package.json
+    input: 'src/lib/main-lib.ts', // Path relative to package.json
     output: {
-        name: 'VueVoice',
+        name: 'CustomButton',
         exports: 'named',
     },
     plugins: [
@@ -14,6 +14,6 @@ export default {
             compileTemplate: true, // Explicitly convert template to render function
         }),
         buble(), // Transpile to ES5
-        uglify()
+       // uglify()
     ],
 };

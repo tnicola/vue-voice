@@ -11,8 +11,9 @@
     "sourceMap": true,
     "baseUrl": ".",
     "types": [
-      "webpack-env"
+      //"webpack-env"
     ],
+    "experimentalDecorators": true,
     "paths": {
       "@/*": [
         "src/*"

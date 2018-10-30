@@ -1,7 +1,19 @@
 {
   "name": "vue-voice",
-  "version": "0.1.0-beta",
+  "version": "0.1.1-beta",
+  "main": "./vue-voice.umd.js",
+  "module": "./vue-voice.esm.js",
+  "unpkg": "./vue-voice.min.js",
   "author": "Nicola Tommasi",
+  "typings": "",
+  "browser": {
+    "./sfc": "./CustomButton.vue"
+  },
+  "files": [
+    "src",
+    "dist/*.js",
+    "types/*.d.ts"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/tnicola/vue-voice"
