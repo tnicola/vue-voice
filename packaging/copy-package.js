@@ -1,4 +1,4 @@
-const PATH_LIB = "tools/";
+const PATH_LIB = "src/lib/";
 const PATH_DIST = "dist/";
 
 const fs = require('fs');

@@ -1,23 +1,19 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <CustomButton />
+    <SpeechToText />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
-import { CustomButton } from 'vue-voice';
-
-import * as p from 'vue-tour';
+// import { CustomButton } from 'vue-voice';
+import SpeechToText from './lib/components/SpeechToText.vue';
 
 export default {
   name: 'app',
   components: {
-    HelloWorld,
-    CustomButton
-  },
+    SpeechToText
+  }
 };
 </script>
 
