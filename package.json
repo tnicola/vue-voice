@@ -6,10 +6,18 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "delete-dist": "rm -rf dist",
+    "build:lib": "npm run delete-dist & npm run build:umd & npm run build:es & npm run build:unpkg & node tools/copy-package",
+    "build:umd": "rollup --config config/rollup.config.js --format umd --file dist/vue-voice.umd.js",
+    "build:es": "rollup --config config/rollup.config.js --format es --file dist/vue-voice.esm.js",
+    "build:unpkg": "rollup --config config/rollup.config.js --format iife --file dist/vue-voice.min.js",
+    "build:orig": "vue-cli-service build --target lib --name myLib src/lib/CustomButton.vue"
   },
   "dependencies": {
-    "vue": "^2.5.17"
+    "vue": "^2.5.17",
+    "vue-tour": "^1.1.0",
+    "vue-voice": "file:///C:\\github\\vue-voice\\vue-voice-0.1.1-beta.tgz"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.5",
@@ -22,6 +30,9 @@
     "babel-jest": "^23.6.0",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0-0",
+    "rollup-plugin-buble": "^0.19.4",
+    "rollup-plugin-uglify": "^6.0.0",
+    "rollup-plugin-vue": "^4.3.2",
     "vue-template-compiler": "^2.5.17"
   }
 }
