@@ -15,8 +15,8 @@
     "build:orig": "vue-cli-service build --target lib --name myLib src/lib/CustomButton.vue"
   },
   "dependencies": {
+    "rxjs": "^6.3.3",
     "vue": "^2.5.17",
-    "vue-tour": "^1.1.0",
     "vue-voice": "file:///C:\\github\\vue-voice\\vue-voice-0.1.1-beta.tgz"
   },
   "devDependencies": {

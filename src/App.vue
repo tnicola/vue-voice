@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <SpeechToText />
+    <SpeechToText @speech="onSpeechReceived($event)"/>
+    Parent: {{ speech }}
   </div>
 </template>
 
@@ -10,16 +11,26 @@
 import SpeechToText from './lib/components/SpeechToText.vue';
 
 export default {
-  name: 'app',
-  components: {
-    SpeechToText
-  }
+    name: 'app',
+    components: {
+        SpeechToText
+    },
+    data() {
+        return {
+            speech: ''
+        };
+    },
+    methods: {
+        onSpeechReceived(speech) {
+            this.speech = speech;
+        }
+    }
 };
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

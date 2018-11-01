@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div @click="onClick()" class="speech-to-text__button-container">
+        <div @click="onClick()" speech="" class="speech-to-text__button-container">
             <img src="../../assets/mic.svg">
         </div>
         <div>{{ speech }}</div>
@@ -8,58 +8,30 @@
 </template>
 
 <script>
-/* eslint-disable no-use-before-define */
-/* eslint-disable no-undef */
-const SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
-const SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
-const SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
+import SpeechToText from '../services/speech-to-text';
 
 export default {
     name: 'SpeechToText',
     data() {
         return {
             speech: '',
-            recognition: {}
+            speechService: {}
         };
     },
     methods: {
         onClick() {
-            this.recognition.start();
-            console.log('Recognition started');
+            this.speechService.speak().subscribe((result) => {
+                this.speech = result;
+                this.$emit('speech', this.speech);
+            });
+            console.log('speechService started');
         }
     },
     props: {
         msg: String
     },
     created() {
-        this.speech = 'created';
-        this.recognition = new SpeechRecognition();
-
-        this.recognition.lang = 'it-IT';
-        this.recognition.interimResults = false;
-        this.recognition.maxAlternatives = 1;
-
-        this.recognition.onresult = (event) => {
-            console.log('Event', event);
-
-            const last = event.results.length - 1;
-            this.speech = event.results[last][0].transcript;
-
-            console.log(`Confidence: ${event.results[0][0].confidence}`, this.speech);
-        };
-
-        this.recognition.onspeechend = () => {
-            this.recognition.stop();
-            console.log('Speech end');
-        };
-
-        this.recognition.onnomatch = () => {
-            console.log("I didn't recognise that color.");
-        };
-
-        this.recognition.onerror = (event) => {
-            console.log(`Error occurred in recognition: ${event.error}`);
-        };
+        this.speechService = new SpeechToText();
     }
 };
 </script>

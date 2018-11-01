@@ -1,10 +1,50 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-undef */
+import { Subject } from 'rxjs';
 
+const SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
 
-var colors = [ 'aqua' , 'azure' , 'beige', 'bisque', 'black', 'blue', 'brown', 'chocolate', 'coral', 'crimson', 'cyan', 'fuchsia', 'ghostwhite', 'gold', 'goldenrod', 'gray', 'green', 'indigo', 'ivory', 'khaki', 'lavender', 'lime', 'linen', 'magenta', 'maroon', 'moccasin', 'navy', 'olive', 'orange', 'orchid', 'peru', 'pink', 'plum', 'purple', 'red', 'salmon', 'sienna', 'silver', 'snow', 'tan', 'teal', 'thistle', 'tomato', 'turquoise', 'violet', 'white', 'yellow'];
-var grammar = '#JSGF V1.0; grammar colors; public <color> = ' + colors.join(' | ') + ' ;'
+export default class SpeechToText {
+  recognition;
 
+  result;
 
+  resultSubject = new Subject();
 
-var bg = document.querySelector('html');
+  constructor() {
+      this.recognition = new SpeechRecognition();
+      this.result = 'created';
 
+      this.recognition.lang = 'it-IT';
+      this.recognition.interimResults = false;
+      this.recognition.maxAlternatives = 1;
 
+      this.recognition.onresult = (event) => {
+          console.log('Event', event);
+
+          const last = event.results.length - 1;
+          this.result = event.results[last][0].transcript;
+
+          console.log(`Confidence: ${event.results[0][0].confidence}`, this.result);
+          this.resultSubject.next(this.result);
+      };
+
+      this.recognition.onspeechend = () => {
+          this.recognition.stop();
+          console.log('Speech end');
+      };
+
+      this.recognition.onnomatch = () => {
+          console.log("I didn't recognise that colors.");
+      };
+
+      this.recognition.onerror = (event) => {
+          console.log(`Error occurred in recognition: ${event.error}`);
+      };
+  }
+
+  speak() {
+      this.recognition.start();
+      return this.resultSubject;
+  }
+}
