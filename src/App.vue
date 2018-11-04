@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <div class="app__speech-to-text">
-      <div><img alt="Vue logo" src="./assets/logo.png" width="24">Speech to Text</div>
+      <div class="app__title">
+          <img alt="Vue logo" src="./assets/logo.png" width="24">Speech to Text
+      </div>
       <div class="app__try-button">
           <SpeechToText class="app__stt-button" @speech="onSpeechReceived($event)"/>
           <textarea class="app__stt-input" placeholder="Prova" v-model="speech"></textarea>
@@ -43,6 +45,11 @@ export default {
   margin-top: 60px
 
 .app
+  &__title
+    display: flex
+    flex-direction: row
+    height: 30px
+    align-items: center
   &__speech-to-text
     display: flex
     flex-direction: column

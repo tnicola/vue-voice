@@ -15,7 +15,7 @@ export default class SpeechToText {
       this.recognition = new SpeechRecognition();
       this.result = 'created';
 
-      this.recognition.lang = 'it-IT';
+      this.recognition.lang = 'en-EN';
       this.recognition.interimResults = false;
       this.recognition.maxAlternatives = 1;
 
@@ -32,7 +32,7 @@ export default class SpeechToText {
       this.recognition.onspeechend = () => {
           this.recognition.stop();
           console.log('Speech end');
-          this.resultSubject.complete();
+          this.resultSubject.next('');
       };
 
       this.recognition.onnomatch = () => {

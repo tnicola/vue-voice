@@ -7,18 +7,18 @@
 
 <script>
 export default {
-  name: "CustomButton",
-  data() {
-    return { message: "" };
-  },
-  methods: {
-    onClick: function () {
-      this.message = "Cojoin";
+    name: 'CustomButton',
+    data() {
+        return { message: '' };
+    },
+    methods: {
+        onClick() {
+            this.message = 'Ah';
+        }
+    },
+    props: {
+        msg: String
     }
-  },
-  props: {
-    msg: String,
-  }
 };
 </script>
 
