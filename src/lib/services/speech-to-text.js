@@ -32,7 +32,7 @@ export default class SpeechToText {
       this.recognition.onspeechend = () => {
           this.recognition.stop();
           console.log('Speech end');
-          // this.resultSubject.next('');
+          this.resultSubject.complete();
       };
 
       this.recognition.onnomatch = () => {
