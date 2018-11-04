@@ -1,6 +1,6 @@
 {
     "name": "vue-voice",
-    "version": "0.1.1-beta",
+    "version": "0.1.4-beta",
     "main": "./vue-voice.umd.js",
     "module": "./vue-voice.esm.js",
     "unpkg": "./vue-voice.min.js",

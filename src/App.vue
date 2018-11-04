@@ -13,7 +13,7 @@
 </template>
 
 <script>
-// import { CustomButton } from 'vue-voice';
+// import { SpeechToText } from 'vue-voice';
 import SpeechToText from './lib/components/SpeechToText.vue';
 
 export default {

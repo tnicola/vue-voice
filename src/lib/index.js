@@ -5,4 +5,3 @@ const VueVoice = {
 };
 
 module.exports = VueVoice;
-

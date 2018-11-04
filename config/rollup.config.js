@@ -4,7 +4,7 @@ import buble from 'rollup-plugin-buble'; // Transpile/polyfill with reasonable b
 import uglify from 'rollup-plugin-uglify';
 
 export default {
-  input: 'src/components/index.js', // Path relative to package.json
+  input: 'src/lib/index.js', // Path relative to package.json
   output: {
     name: 'VueVoice',
     exports: 'named',

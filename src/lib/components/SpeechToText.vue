@@ -3,10 +3,9 @@
         <div class="speech-to-text__button-container">
             <div @click="onClick()" :class="{ 'speech-to-text__button--speaking': isSpeaking }"
                     class="speech-to-text__button">
-                    <img v-if="!isSpeaking" src="../../assets/mic.svg">
+                    <img v-if="!isSpeaking" :src="micImage">
                     <img v-if="isSpeaking"
-                        class="speech-to-text__stop"
-                        src="../../assets/stop.svg">
+                        class="speech-to-text__stop" :src="stopImage">
                 </div>
             </div>
     </div>
@@ -14,6 +13,18 @@
 
 <script>
 import SpeechToText from '../services/speech-to-text';
+import micImage from '../../assets/mic.svg';
+import stopImage from '../../assets/stop.svg';
+// const micImage = require('../../assets/mic.svg');
+// const stopImage = require('../../assets/stop.svg');
+
+/*
+// eslint-disable-next-line no-unused-vars
+
+// eslint-disable-next-line no-unused-vars
+
+*/
+
 
 export default {
     name: 'SpeechToText',
@@ -21,7 +32,9 @@ export default {
         return {
             isSpeaking: false,
             speech: '',
-            speechService: {}
+            speechService: {},
+            micImage,
+            stopImage
         };
     },
     methods: {

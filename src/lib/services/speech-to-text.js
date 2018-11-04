@@ -1,52 +1,48 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-undef */
+
 import { Subject } from 'rxjs';
 
 const SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
 
 export default class SpeechToText {
-  recognition;
+    constructor() {
+        this.recognition = new SpeechRecognition();
+        this.result = 'created';
+        this.resultSubject = new Subject();
 
-  result;
+        this.recognition.lang = 'en-EN';
+        this.recognition.interimResults = false;
+        this.recognition.maxAlternatives = 1;
 
-  resultSubject = new Subject();
+        this.recognition.onresult = (event) => {
+            console.log('Event', event);
 
-  constructor() {
-      this.recognition = new SpeechRecognition();
-      this.result = 'created';
+            const last = event.results.length - 1;
+            this.result = event.results[last][0].transcript;
 
-      this.recognition.lang = 'en-EN';
-      this.recognition.interimResults = false;
-      this.recognition.maxAlternatives = 1;
+            console.log(`Confidence: ${event.results[0][0].confidence}`, this.result);
+            this.resultSubject.next(this.result);
+        };
 
-      this.recognition.onresult = (event) => {
-          console.log('Event', event);
+        this.recognition.onspeechend = () => {
+            this.recognition.stop();
+            console.log('Speech end');
+            this.resultSubject.next('');
+        };
 
-          const last = event.results.length - 1;
-          this.result = event.results[last][0].transcript;
+        this.recognition.onnomatch = () => {
+            console.log("I didn't recognise that colors.");
+        };
 
-          console.log(`Confidence: ${event.results[0][0].confidence}`, this.result);
-          this.resultSubject.next(this.result);
-      };
+        this.recognition.onerror = (event) => {
+            console.log(`Error occurred in recognition: ${event.error}`);
+            this.resultSubject.error(`Error occurred in recognition: ${event.error}`);
+        };
+    }
 
-      this.recognition.onspeechend = () => {
-          this.recognition.stop();
-          console.log('Speech end');
-          this.resultSubject.next('');
-      };
-
-      this.recognition.onnomatch = () => {
-          console.log("I didn't recognise that colors.");
-      };
-
-      this.recognition.onerror = (event) => {
-          console.log(`Error occurred in recognition: ${event.error}`);
-          this.resultSubject.error(`Error occurred in recognition: ${event.error}`);
-      };
-  }
-
-  speak() {
-      this.recognition.start();
-      return this.resultSubject;
-  }
+    speak() {
+        this.recognition.start();
+        return this.resultSubject;
+    }
 }
