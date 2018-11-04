@@ -32,6 +32,7 @@ export default class SpeechToText {
       this.recognition.onspeechend = () => {
           this.recognition.stop();
           console.log('Speech end');
+          // this.resultSubject.next('');
       };
 
       this.recognition.onnomatch = () => {
@@ -40,6 +41,7 @@ export default class SpeechToText {
 
       this.recognition.onerror = (event) => {
           console.log(`Error occurred in recognition: ${event.error}`);
+          this.resultSubject.error(`Error occurred in recognition: ${event.error}`);
       };
   }
 

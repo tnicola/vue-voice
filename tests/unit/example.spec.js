@@ -1,12 +1,12 @@
 import { shallowMount } from '@vue/test-utils';
-import HelloWorld from '@/components/HelloWorld.vue';
+import SpeechToText from '../../src/lib/components/SpeechToText.vue';
 
 describe('HelloWorld.vue', () => {
-  it('renders props.msg when passed', () => {
-    const msg = 'new message';
-    const wrapper = shallowMount(HelloWorld, {
-      propsData: { msg },
+    it('renders props.msg when passed', () => {
+        const msg = 'new message';
+        const wrapper = shallowMount(SpeechToText, {
+            propsData: { msg }
+        });
+        expect(wrapper.text()).toMatch(msg);
     });
-    expect(wrapper.text()).toMatch(msg);
-  });
 });
